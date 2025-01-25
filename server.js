@@ -44,7 +44,7 @@ app.post("/submit-form", async (req, res) => {
     // Send Email to Admin
     const adminMailOptions = {
       from: "dev.glidex@gmail.com",
-      to: "dev.glidex@gmail.com",
+      to: "Dev@glidex.tech",
       subject: "New Form Submission",
       text: `New form submission details:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone no.: ${phoneno}\nCompany/Organization: ${company}\nPreferred Contact Method: ${contactmethod}\n Occupation: ${occupation}`,
     };
@@ -80,7 +80,7 @@ app.post("/subscribe", async (req, res) => {
     // Send Email to Admin
     const adminMailOptions = {
       from: "dev.glidex@gmail.com",
-      to: "dev.glidex@gmail.com",
+      to: "Dev@glidex.tech",
       subject: "New Subscriber",
       text: `Subscriber Email: ${email}`,
     };
