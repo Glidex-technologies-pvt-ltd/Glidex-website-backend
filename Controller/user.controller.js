@@ -156,32 +156,32 @@ const streamToString = async (readableStream) => {
     });
 }
 
-//Update code on azure blob strage
-export const updateOnAzure = async (req, res) => {
-    try {
-        const { blobName, updatedContent } = req.body;
-        if (!blobName || !updatedContent) {
-            return res.status(400).json({ error: "Blob name and updated content are required" });
-        }
+// //Update code on azure blob strage
+// export const updateOnAzure = async (req, res) => {
+//     try {
+//         const { blobName, updatedContent } = req.body;
+//         if (!blobName || !updatedContent) {
+//             return res.status(400).json({ error: "Blob name and updated content are required" });
+//         }
 
-        // Get BlockBlobClient for the existing blob
-        const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+//         // Get BlockBlobClient for the existing blob
+//         const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
-        // Check if the blob exists
-        const exists = await blockBlobClient.exists();
-        if (!exists) {
-            return res.status(404).json({ error: "Blob not found" });
-        }
+//         // Check if the blob exists
+//         const exists = await blockBlobClient.exists();
+//         if (!exists) {
+//             return res.status(404).json({ error: "Blob not found" });
+//         }
 
-        // Upload updated content (overwrite existing content)
-        await blockBlobClient.upload(Buffer.from(updatedContent, "utf-8"), Buffer.byteLength(updatedContent), { overwrite: true });
+//         // Upload updated content (overwrite existing content)
+//         await blockBlobClient.upload(Buffer.from(updatedContent, "utf-8"), Buffer.byteLength(updatedContent), { overwrite: true });
 
-        res.status(200).json({ message: "Code updated successfully", blobUrl: blockBlobClient.url });
-    } catch (error) {
-        console.error("Error updating blob:", error.message);
-        res.status(500).json({ error: "Error updating blob" });
-    }
-};
+//         res.status(200).json({ message: "Code updated successfully", blobUrl: blockBlobClient.url });
+//     } catch (error) {
+//         console.error("Error updating blob:", error.message);
+//         res.status(500).json({ error: "Error updating blob" });
+//     }
+// };
 
 // API Endpoint to Delete a Blob
 export const deleteFromAzure = async (req, res) => {

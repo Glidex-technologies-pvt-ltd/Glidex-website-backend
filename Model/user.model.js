@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     blobUrl: [String],
+    projectId: [String],
     otp: { type: String },
     otpExpiry: { type: Date },
     isVerified: { type: Boolean, default: false },

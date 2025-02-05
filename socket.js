@@ -9,11 +9,11 @@ socket.on("connect", () => {
     console.log("hi");
 
     // Send a test drag-drop event
-    socket.emit("drag-drop", { userId: "67a0d8286d942d00c7603b46", functionalityType: "basic" });
+    socket.emit("updateBlob", { blobName: "user-67a315956fa6e2bfaa21815f-1738743974061.txt", updatedContent: "Testing Socket" });
 
     // Listen for credit updates
-    socket.on("creditUpdate", (data) => {
-        console.log("Updated credits:", data);
+    socket.on("blobUpdated", (data) => {
+        console.log("Updated Blob:", data);
     });
 
     // Listen for errors

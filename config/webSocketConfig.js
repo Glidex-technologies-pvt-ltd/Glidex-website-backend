@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { handleDragDrop, handleDelete } from "../Controller/webSocket.controller.js";
+import { handleDragDrop, handleDelete, updateOnAzure } from "../Controller/webSocket.controller.js";
 
 export default function setupSocket(server) {
 
@@ -18,6 +18,9 @@ export default function setupSocket(server) {
     
         // Listen for delete events
         socket.on("delete", (data) => handleDelete(socket, data));
+
+        // Listen for update blob events
+        socket.on("updateBlob", (data) => updateOnAzure(socket, data));
     
         socket.on("disconnect", () => {
             console.log("User disconnected:", socket.id);
