@@ -6,8 +6,8 @@ import passport from './config/passportConfig.js'; // Passport config
 import { connectMongoDB } from './config/mongoConfig.js';
 import { authRoutes } from './Routes/auth.routes.js';
 import { userRoutes } from './Routes/user.routes.js';
-import formRoutes from './Routes/form.routes.js';
-import subscribeRoutes from './Routes/subscribe.routes.js';
+import {formRoutes} from './Routes/form.routes.js';
+import {subscribeRoutes} from './Routes/subscribe.routes.js';
 import setupSocket from './config/webSocketConfig.js'
 import http from "http";
 
@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
+    credentials: true 
 }));
 
 // Session Configuration
@@ -35,12 +36,12 @@ app.use(passport.session());
 // Connect to MongoDB
 connectMongoDB();
 
-// Start the Server
-const PORT = process.env.PORT || 6000;
-server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
 // Routes
 authRoutes(app)
 userRoutes(app)
-app.use('/form', formRoutes);
-app.use('/subscribe', subscribeRoutes);
+formRoutes(app)
+subscribeRoutes(app)
+
+// Start the Server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

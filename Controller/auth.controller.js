@@ -8,8 +8,8 @@ export const googleAuth = (req, res, next) => {
 // Handle Google OAuth callback
 export const googleAuthCallback = (req, res) => {
   passport.authenticate('google', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
+    successRedirect: 'http://4.240.37.168/',
+    failureRedirect: 'glidex.co.in/login',
   })(req, res);
 };
 
