@@ -1,4 +1,8 @@
 import passport from 'passport';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Redirect to Google for authentication
 export const googleAuth = (req, res, next) => {
@@ -8,8 +12,8 @@ export const googleAuth = (req, res, next) => {
 // Handle Google OAuth callback
 export const googleAuthCallback = (req, res) => {
   passport.authenticate('google', {
-    successRedirect: 'http://4.240.37.168/',
-    failureRedirect: 'glidex.co.in/login',
+    successRedirect: process.env.GLIDEX_PRODUCT_URL,
+    failureRedirect: 'https://glidex.co.in/login',
   })(req, res);
 };
 
